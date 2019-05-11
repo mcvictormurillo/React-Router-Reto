@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Container} from 'semantic-ui-react';
+import dataJSON from './data.json'
+import Router from './components/Router'
 import './App.css';
+//import 'semantic-ui-css/'
+class App extends React.Component {
 
-function App() {
+  state = {
+    movies : []
+  }
+  componentDidMount(){
+    console.log(dataJSON)
+
+    this.setState({
+      movies : dataJSON.results
+    })
+  }
+
+
+
+ render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Container>
+        <Router movies={this.state.movies}>
+        
+
+        </Router>
+      </Container>
     </div>
   );
+ }
 }
 
 export default App;
