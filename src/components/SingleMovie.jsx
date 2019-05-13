@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 
 
         if(this.props.movie){
-            console.log(this.props.movie)
+            //console.log(this.props.movie)
             return(this.props.movie.title)
         }else{
             return('no existe')

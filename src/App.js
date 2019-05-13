@@ -1,34 +1,34 @@
 import React from 'react';
 import {Container} from 'semantic-ui-react';
-import dataJSON from './data.json'
 import Router from './components/Router'
+import CreaticAcademyProvider from './components/Context'
+import { CreaticAcademyContext } from "./components/Context";
 import './App.css';
-//import 'semantic-ui-css/'
+import "semantic-ui-css/semantic.min.css";
 class App extends React.Component {
-
-  state = {
-    movies : []
-  }
-  componentDidMount(){
-    console.log(dataJSON)
-
-    this.setState({
-      movies : dataJSON.results
-    })
-  }
-
-
 
  render(){
   return (
-    <div className="container">
-      <Container>
-        <Router movies={this.state.movies}>
-        
-
-        </Router>
-      </Container>
-    </div>
+    <CreaticAcademyProvider>
+      <div className="container">
+        <Container>
+          <CreaticAcademyContext.Consumer>
+            {
+              value => {
+                value.state.map((i)=>{
+                  //console.log(i)
+                })
+                return (
+                  <Router movies={value.state}></Router>
+                )
+              }
+            }
+            
+          </CreaticAcademyContext.Consumer>
+        </Container>
+        </div>
+      </CreaticAcademyProvider>
+   
   );
  }
 }
